@@ -3,11 +3,11 @@
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../paper-button/paper-button.html">
 
-<!--<link rel="import" href="../neon-animation/neon-animation-runner-behavior.html">-->
-<!--<link rel="import" href="../neon-animation/animations/slide-left-animation.html">-->
-<!--<link rel="import" href="../neon-animation/animations/slide-right-animation.html">-->
-<!--<link rel="import" href="../neon-animation/animations/fade-out-animation.html">-->
-<!--<link rel="import" href="../neon-animation/animations/fade-in-animation.html">-->
+<link rel="import" href="../neon-animation/neon-animation-runner-behavior.html">
+<link rel="import" href="../neon-animation/animations/slide-left-animation.html">
+<link rel="import" href="../neon-animation/animations/slide-right-animation.html">
+<link rel="import" href="../neon-animation/animations/fade-out-animation.html">
+<link rel="import" href="../neon-animation/animations/fade-in-animation.html">
 <!--
 `sched-month-view`
 yet another month-view (sched.site)
@@ -96,9 +96,9 @@ yet another month-view (sched.site)
 
       is: 'sched-month-view',
 
-      // behaviors: [
-      //   Polymer.NeonAnimationRunnerBehavior
-      // ],
+      behaviors: [
+        Polymer.NeonAnimationRunnerBehavior
+      ],
 
       properties: {
         date: {
@@ -136,31 +136,31 @@ yet another month-view (sched.site)
           notify: true,
           value: {start: '', end: ''}
         },
-        // animationConfig: {
-        //   type: Object,
-        //   value: function() {
-        //     return {
-        //       'prev': [{
-        //         name: 'slide-right-animation',
-        //         node: this.$.days
-        //       }, {
-        //         name: 'fade-out-animation',
-        //         node: this.$.days
-        //       }],
-        //       'next': [{
-        //         name: 'slide-left-animation',
-        //         node: this.$.days
-        //       }, {
-        //         name: 'fade-out-animation',
-        //         node: this.$.days
-        //       }]
-        //     }
-        //   }
-        // }
+        animationConfig: {
+          type: Object,
+          value: function() {
+            return {
+              'prev': [{
+                name: 'slide-right-animation',
+                node: this.$.days
+              }, {
+                name: 'fade-out-animation',
+                node: this.$.days
+              }],
+              'next': [{
+                name: 'slide-left-animation',
+                node: this.$.days
+              }, {
+                name: 'fade-out-animation',
+                node: this.$.days
+              }]
+            }
+          }
+        }
       },
 
       listeners: {
-        // 'neon-animation-finish': '_onNeonAnimationFinish'
+        'neon-animation-finish': '_onNeonAnimationFinish'
       },
 
       ready: function() {
@@ -169,13 +169,13 @@ yet another month-view (sched.site)
       },
 
       prevMonth: function(){
-        // this.playAnimation('prev');
+        this.playAnimation('prev');
         this.set('mDate', this.mDate.subtract(1, 'months'));
         this.set('date', this.mDate.format(this.dateFormat));
         this.async(this.createMonthView, 400);
       },
       nextMonth: function(){
-        // this.playAnimation('next');
+        this.playAnimation('next');
         this.set('mDate', this.mDate.add(1, 'months'));
         this.set('date', this.mDate.format(this.dateFormat));
         this.async(this.createMonthView, 400);
